@@ -1,12 +1,15 @@
-# WaveBuddy Support
+# WaveBuddy
 
-Welcome to the official support repository for **WaveBuddy** - Audio & Video Editor for macOS.
+**Audio & Video Editor for macOS**
 
-## About WaveBuddy
+[Website](https://randomtask2000.github.io/wavebuddy-app/) | [Support](https://randomtask2000.github.io/wavebuddy-app/support.html) | [Privacy Policy](https://randomtask2000.github.io/wavebuddy-app/privacy.html)
+
+---
 
 WaveBuddy is a powerful audio and video editor that lets you visualize, edit, and export your media with beautiful waveform displays.
 
-### Features
+## Features
+
 - Audio and video waveform visualization
 - Multiple waveform styles (Filled/Line)
 - Trim and edit audio/video clips
@@ -17,19 +20,16 @@ WaveBuddy is a powerful audio and video editor that lets you visualize, edit, an
 ## Getting Help
 
 ### Report a Bug
-If you've found a bug, please [open an issue](../../issues/new) with:
+If you've found a bug, please [open an issue](https://github.com/randomtask2000/wavebuddy-app/issues/new) with:
 - A description of the problem
 - Steps to reproduce the issue
 - Your macOS version
 - The file type you were working with (if applicable)
 
 ### Request a Feature
-Have an idea to improve WaveBuddy? [Open a feature request](../../issues/new) and describe:
+Have an idea to improve WaveBuddy? [Open a feature request](https://github.com/randomtask2000/wavebuddy-app/issues/new) and describe:
 - What you'd like to see added
 - How it would help your workflow
-
-### General Questions
-For general questions about using WaveBuddy, feel free to [start a discussion](../../issues/new).
 
 ## FAQ
 
@@ -42,14 +42,15 @@ A: WaveBuddy supports MP4, MOV, and other QuickTime-compatible formats.
 **Q: What formats can I export to?**
 A: Audio can be exported to WAV, FLAC, or M4A. Video can be exported to MP4.
 
-## Contact
+## System Requirements
 
-For urgent issues or private inquiries, you can reach us through the App Store support link.
+- macOS 14.0 (Sonoma) or later
+- Apple Silicon or Intel Mac
 
-## Privacy Policy
+## Privacy
 
-WaveBuddy does not collect any personal data. All your files are processed locally on your device.
+WaveBuddy does not collect any personal data. All your files are processed locally on your device. See our full [Privacy Policy](https://randomtask2000.github.io/wavebuddy-app/privacy.html).
 
 ---
 
-Thank you for using WaveBuddy!
+© 2025 Emilio Nicoli. All rights reserved.
