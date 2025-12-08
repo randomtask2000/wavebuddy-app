@@ -66,6 +66,12 @@
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .screenshot-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
         }
         .screenshot-item img {
             width: 100%;
@@ -84,6 +90,78 @@
         .screenshot-item .caption p {
             color: #888;
             font-size: 0.9em;
+        }
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            user-select: none;
+            padding: 20px;
+        }
+        .lightbox-nav:hover {
+            opacity: 1;
+        }
+        .lightbox-prev {
+            left: 20px;
+        }
+        .lightbox-next {
+            right: 20px;
+        }
+        .lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+        }
+        .lightbox-caption h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .lightbox-caption p {
+            color: #888;
         }
         .features {
             display: grid;
@@ -165,56 +243,56 @@
         <div class="screenshots">
             <h2>See It In Action</h2>
             <div class="screenshot-grid">
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(0)">
                     <img src="images/easy-workflow.png" alt="Easy Workflow">
                     <div class="caption">
                         <h3>Easy Workflow</h3>
                         <p>Intuitive interface for seamless editing</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(1)">
                     <img src="images/speech-to-text.png" alt="Speech to Text">
                     <div class="caption">
                         <h3>Speech to Text</h3>
                         <p>On-device AI transcription</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(2)">
                     <img src="images/video-editing-effects.png" alt="Video Editing">
                     <div class="caption">
                         <h3>Video Editing</h3>
                         <p>Edit video with visual waveforms</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(3)">
                     <img src="images/edited-regions.png" alt="Edited Regions">
                     <div class="caption">
                         <h3>Precise Trimming</h3>
                         <p>Select and edit regions with precision</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(4)">
                     <img src="images/themes-waveform-style.png" alt="Themes">
                     <div class="caption">
                         <h3>Customizable Themes</h3>
                         <p>Personalize your waveform colors</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(5)">
                     <img src="images/equalizer.png" alt="Equalizer">
                     <div class="caption">
                         <h3>Equalizer</h3>
                         <p>Fine-tune your audio output</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(6)">
                     <img src="images/equalizer-presets.png" alt="Equalizer Presets">
                     <div class="caption">
                         <h3>EQ Presets</h3>
                         <p>Quick access to common settings</p>
                     </div>
                 </div>
-                <div class="screenshot-item">
+                <div class="screenshot-item" onclick="openLightbox(7)">
                     <img src="images/voice-effects.png" alt="Voice Effects">
                     <div class="caption">
                         <h3>Voice Effects</h3>
@@ -282,5 +360,79 @@
             <p class="copyright">© 2025 Emilio Nicoli. All rights reserved.</p>
         </footer>
     </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="prevImage(event)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="">
+        <span class="lightbox-nav lightbox-next" onclick="nextImage(event)">&#10095;</span>
+        <div class="lightbox-caption">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-desc"></p>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            { src: 'images/easy-workflow.png', title: 'Easy Workflow', desc: 'Intuitive interface for seamless editing' },
+            { src: 'images/speech-to-text.png', title: 'Speech to Text', desc: 'On-device AI transcription' },
+            { src: 'images/video-editing-effects.png', title: 'Video Editing', desc: 'Edit video with visual waveforms' },
+            { src: 'images/edited-regions.png', title: 'Precise Trimming', desc: 'Select and edit regions with precision' },
+            { src: 'images/themes-waveform-style.png', title: 'Customizable Themes', desc: 'Personalize your waveform colors' },
+            { src: 'images/equalizer.png', title: 'Equalizer', desc: 'Fine-tune your audio output' },
+            { src: 'images/equalizer-presets.png', title: 'EQ Presets', desc: 'Quick access to common settings' },
+            { src: 'images/voice-effects.png', title: 'Voice Effects', desc: 'Transform your audio with effects' }
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function updateLightbox() {
+            document.getElementById('lightbox-img').src = images[currentIndex].src;
+            document.getElementById('lightbox-title').textContent = images[currentIndex].title;
+            document.getElementById('lightbox-desc').textContent = images[currentIndex].desc;
+        }
+
+        function prevImage(event) {
+            event.stopPropagation();
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        }
+
+        function nextImage(event) {
+            event.stopPropagation();
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightbox();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateLightbox();
+            } else if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
