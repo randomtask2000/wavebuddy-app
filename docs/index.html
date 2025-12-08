@@ -17,7 +17,7 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
@@ -47,6 +47,43 @@
         .app-store-badge {
             height: 50px;
             margin-top: 20px;
+        }
+        .screenshots {
+            margin: 60px 0;
+        }
+        .screenshots h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .screenshot-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .screenshot-item .caption {
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .screenshot-item .caption h3 {
+            color: #00d4ff;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .screenshot-item .caption p {
+            color: #888;
+            font-size: 0.9em;
         }
         .features {
             display: grid;
@@ -116,8 +153,7 @@
             <h1>WaveBuddy</h1>
             <p class="tagline">Audio & Video Editor for macOS</p>
             <p style="color: #b0b0b0; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                Visualize, edit, and export your audio and video with beautiful waveform displays.
-                Simple, powerful, and designed for macOS.
+                See your sound. Transcribe speech to text. Import MP3, WAV, FLAC, MP4, MOV. Export WAV, FLAC, M4A, MP4. A native macOS waveform editor.
             </p>
             <a href="https://apps.apple.com/app/wavebuddy" target="_blank">
                 <img src="mac-app-store-badge.svg"
@@ -126,10 +162,76 @@
             </a>
         </header>
 
+        <div class="screenshots">
+            <h2>See It In Action</h2>
+            <div class="screenshot-grid">
+                <div class="screenshot-item">
+                    <img src="images/easy-workflow.png" alt="Easy Workflow">
+                    <div class="caption">
+                        <h3>Easy Workflow</h3>
+                        <p>Intuitive interface for seamless editing</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/speech-to-text.png" alt="Speech to Text">
+                    <div class="caption">
+                        <h3>Speech to Text</h3>
+                        <p>On-device AI transcription</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/video-editing-effects.png" alt="Video Editing">
+                    <div class="caption">
+                        <h3>Video Editing</h3>
+                        <p>Edit video with visual waveforms</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/edited-regions.png" alt="Edited Regions">
+                    <div class="caption">
+                        <h3>Precise Trimming</h3>
+                        <p>Select and edit regions with precision</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/themes-waveform-style.png" alt="Themes">
+                    <div class="caption">
+                        <h3>Customizable Themes</h3>
+                        <p>Personalize your waveform colors</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/equalizer.png" alt="Equalizer">
+                    <div class="caption">
+                        <h3>Equalizer</h3>
+                        <p>Fine-tune your audio output</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/equalizer-presets.png" alt="Equalizer Presets">
+                    <div class="caption">
+                        <h3>EQ Presets</h3>
+                        <p>Quick access to common settings</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="images/voice-effects.png" alt="Voice Effects">
+                    <div class="caption">
+                        <h3>Voice Effects</h3>
+                        <p>Transform your audio with effects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="features">
             <div class="feature">
                 <h3>Waveform Visualization</h3>
                 <p>See your audio and video with stunning waveform displays. Choose between filled and line styles.</p>
+            </div>
+            <div class="feature">
+                <h3>Speech to Text</h3>
+                <p>Transcribe audio using Apple's on-device AI. Fast, private, no internet required.</p>
             </div>
             <div class="feature">
                 <h3>Precise Editing</h3>
@@ -142,10 +244,6 @@
             <div class="feature">
                 <h3>Customizable Themes</h3>
                 <p>Personalize your workspace with custom colors and themes that match your style.</p>
-            </div>
-            <div class="feature">
-                <h3>Real-time Playback</h3>
-                <p>Watch the playhead track through your waveform as your media plays.</p>
             </div>
             <div class="feature">
                 <h3>Native macOS App</h3>
