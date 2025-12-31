@@ -5,113 +5,333 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - WaveBuddy</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --accent-cyan: #39c5cf;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #ffffff;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Monaco', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
+            line-height: 1.6;
+            font-size: 14px;
         }
-        .container {
-            max-width: 700px;
+        
+        .terminal {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
-        header {
+        
+        .terminal-window {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 0;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 0 10px rgba(57, 197, 207, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .terminal-header {
+            background: var(--bg-tertiary);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+        
+        .terminal-icon {
+            color: var(--accent-cyan);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .terminal-icon::before {
+            content: '>_';
+        }
+        
+        .terminal-title {
+            color: var(--accent-green);
+            font-size: 13px;
+            margin-left: 8px;
+            flex: 1;
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 40px;
         }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        
+        .terminal-title::before {
+            content: '[ ';
+            color: var(--accent-cyan);
         }
+        
+        .terminal-title::after {
+            content: ' ]';
+            color: var(--accent-cyan);
+        }
+        
+        .terminal-body {
+            padding: 16px 20px;
+        }
+        
+        h1.pixel-title {
+            font-family: 'Silkscreen', cursive;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent-cyan);
+            text-shadow: 
+                2px 2px 0 #1a5a5e,
+                4px 4px 0 var(--bg-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        
+        .header-section {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
         .updated {
-            color: #888;
+            color: var(--text-muted);
+            font-size: 12px;
         }
-        h2 {
-            font-size: 1.5em;
-            margin: 30px 0 15px;
-            color: #00d4ff;
+        
+        .updated::before {
+            content: '// ';
+            color: var(--accent-cyan);
         }
-        p, li {
-            color: #b0b0b0;
-            line-height: 1.8;
-            margin-bottom: 15px;
+        
+        .section-title {
+            color: var(--accent-green);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            margin-top: 20px;
+            padding: 8px 12px;
+            background: linear-gradient(90deg, var(--bg-tertiary) 0%, transparent 100%);
+            border-left: 3px solid var(--accent-cyan);
         }
-        ul {
-            margin-left: 20px;
+        
+        .section-title:first-child {
+            margin-top: 0;
         }
-        a {
-            color: #00d4ff;
-            text-decoration: none;
+        
+        .section-title::before {
+            content: '> ';
+            color: var(--accent-cyan);
         }
-        a:hover {
-            text-decoration: underline;
-        }
+        
         .back-link {
             display: inline-block;
-            margin-bottom: 20px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            margin-bottom: 16px;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            transition: all 0.2s;
         }
-        footer {
+        
+        .back-link:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-green);
+        }
+        
+        .back-link::before {
+            content: '< ';
+            color: var(--accent-green);
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        strong {
+            color: var(--accent-green);
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+        
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        li::marker {
+            color: var(--accent-cyan);
+        }
+        
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: var(--accent-green);
+        }
+        
+        .highlight-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--accent-green);
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+        
+        .highlight-box p::before {
+            content: '[OK] ';
+            color: var(--accent-cyan);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s, background 0.2s;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-green);
+            border-color: var(--accent-cyan);
+            background: var(--bg-primary);
+        }
+        
+        .footer-links a::before {
+            content: '> ';
+            color: var(--accent-green);
+        }
+        
+        .copyright {
             text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 60px;
-            color: #666;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="terminal">
+        <a href="index.html" class="back-link">back to home</a>
+        
+        <!-- Header -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">cat privacy.md</span>
+            </div>
+            <div class="terminal-body">
+                <div class="header-section">
+                    <h1 class="pixel-title">Privacy Policy</h1>
+                    <p class="updated">Last Updated: December 8, 2025</p>
+                </div>
+            </div>
+        </div>
 
-        <header>
-            <h1>Privacy Policy</h1>
-            <p class="updated">Last Updated: December 8, 2025</p>
-        </header>
+        <!-- Policy Content -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">privacy --details</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">Overview</div>
+                <p>WaveBuddy ("the App") is designed with your privacy in mind. This privacy policy explains how we handle your information.</p>
 
-        <main>
-            <h2>Overview</h2>
-            <p>WaveBuddy ("the App") is designed with your privacy in mind. This privacy policy explains how we handle your information.</p>
+                <div class="section-title">Data Collection</div>
+                <div class="highlight-box">
+                    <p>WaveBuddy does not collect any personal data.</p>
+                </div>
+                <p>The App operates entirely on your device and does not:</p>
+                <ul>
+                    <li>Collect personal information</li>
+                    <li>Track your usage or behavior</li>
+                    <li>Send data to external servers</li>
+                    <li>Use analytics or tracking tools</li>
+                    <li>Require account creation</li>
+                    <li>Access your contacts, location, or other personal data</li>
+                </ul>
 
-            <h2>Data Collection</h2>
-            <p><strong>WaveBuddy does not collect any personal data.</strong></p>
-            <p>The App operates entirely on your device and does not:</p>
-            <ul>
-                <li>Collect personal information</li>
-                <li>Track your usage or behavior</li>
-                <li>Send data to external servers</li>
-                <li>Use analytics or tracking tools</li>
-                <li>Require account creation</li>
-                <li>Access your contacts, location, or other personal data</li>
-            </ul>
+                <div class="section-title">Data Storage</div>
+                <p>All files you open and create with WaveBuddy are stored locally on your device. The App only accesses files that you explicitly choose to open or save.</p>
 
-            <h2>Data Storage</h2>
-            <p>All files you open and create with WaveBuddy are stored locally on your device. The App only accesses files that you explicitly choose to open or save.</p>
+                <div class="section-title">Speech Recognition</div>
+                <p>WaveBuddy's speech-to-text feature uses Apple's on-device Speech framework. All transcription is processed locally on your Mac. No audio data is sent to any external servers.</p>
 
-            <h2>Third-Party Services</h2>
-            <p>WaveBuddy does not integrate with any third-party services that collect data.</p>
+                <div class="section-title">Third-Party Services</div>
+                <p>WaveBuddy does not integrate with any third-party services that collect data.</p>
 
-            <h2>Children's Privacy</h2>
-            <p>WaveBuddy does not collect any information from anyone, including children under the age of 13.</p>
+                <div class="section-title">Children's Privacy</div>
+                <p>WaveBuddy does not collect any information from anyone, including children under the age of 13.</p>
 
-            <h2>Changes to This Policy</h2>
-            <p>If we make changes to this privacy policy, we will update the "Last Updated" date above.</p>
+                <div class="section-title">Changes to This Policy</div>
+                <p>If we make changes to this privacy policy, we will update the "Last Updated" date above.</p>
 
-            <h2>Contact</h2>
-            <p>If you have questions about this privacy policy, please open an issue at:<br>
-            <a href="https://github.com/randomtask2000/wavebuddy-app/issues">github.com/randomtask2000/wavebuddy-app/issues</a></p>
-        </main>
+                <div class="section-title">Contact</div>
+                <p>If you have questions about this privacy policy, please open an issue at:<br>
+                <a href="https://github.com/randomtask2000/wavebuddy-app/issues">github.com/randomtask2000/wavebuddy-app/issues</a></p>
+            </div>
+        </div>
 
-        <footer>
-            <p>© 2025 Emilio Nicoli. All rights reserved.</p>
-        </footer>
+        <!-- Footer -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">links</span>
+            </div>
+            <div class="terminal-body">
+                <div class="footer-links">
+                    <a href="index.html">home</a>
+                    <a href="support.html">support</a>
+                    <a href="https://github.com/randomtask2000/wavebuddy-app">github</a>
+                </div>
+                <p class="copyright">© 2025 Emilio Nicoli. All rights reserved.</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
