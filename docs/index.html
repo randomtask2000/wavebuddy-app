@@ -5,92 +5,310 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WaveBuddy - Audio & Video Editor for macOS</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --accent-cyan: #39c5cf;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #ffffff;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Monaco', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
+            line-height: 1.6;
+            font-size: 14px;
         }
-        .container {
-            max-width: 1000px;
+        
+        .terminal {
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
-        header {
-            text-align: center;
-            padding: 60px 0;
-        }
-        .logo {
-            width: 128px;
-            height: 128px;
+        
+        .terminal-window {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
             margin-bottom: 20px;
-            border-radius: 24px;
         }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #00d4ff, #a855f7, #ff6b6b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .terminal-header {
+            background: var(--bg-tertiary);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
         }
-        .tagline {
-            font-size: 1.4em;
-            color: #a0a0a0;
-            margin-bottom: 30px;
+        
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
         }
-        .app-store-badge {
-            height: 50px;
-            margin-top: 20px;
+        
+        .terminal-btn.red { background: #ff5f56; }
+        .terminal-btn.yellow { background: #ffbd2e; }
+        .terminal-btn.green { background: #27ca40; }
+        
+        .terminal-title {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-left: 8px;
         }
-        .screenshots {
-            margin: 60px 0;
+        
+        .terminal-body {
+            padding: 20px;
         }
-        .screenshots h2 {
-            font-size: 2em;
-            margin-bottom: 30px;
+        
+        .prompt {
+            color: var(--accent-green);
+        }
+        
+        .command {
+            color: var(--accent-blue);
+        }
+        
+        .flag {
+            color: var(--accent-orange);
+        }
+        
+        .string {
+            color: var(--accent-cyan);
+        }
+        
+        .comment {
+            color: var(--text-muted);
+        }
+        
+        .output {
+            color: var(--text-secondary);
+            margin: 10px 0;
+            padding-left: 0;
+        }
+        
+        .header-section {
             text-align: center;
+            padding: 20px 0;
         }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 16px;
+            border-radius: 16px;
+        }
+        
+        h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        h1 .cursor {
+            animation: blink 1s infinite;
+            color: var(--accent-green);
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .tagline {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .app-store-badge {
+            height: 44px;
+            margin-top: 16px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        
+        .app-store-badge:hover {
+            opacity: 1;
+        }
+        
+        .section-title {
+            color: var(--accent-purple);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-title::before {
+            content: '#';
+            color: var(--text-muted);
+        }
+        
         .screenshot-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
         }
+        
         .screenshot-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s, transform 0.2s;
         }
+        
         .screenshot-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
         }
+        
         .screenshot-item img {
             width: 100%;
             height: auto;
             display: block;
         }
+        
         .screenshot-item .caption {
-            padding: 15px 20px;
-            text-align: center;
+            padding: 12px;
+            border-top: 1px solid var(--border-color);
         }
+        
         .screenshot-item .caption h3 {
-            color: #00d4ff;
-            font-size: 1.1em;
-            margin-bottom: 5px;
+            color: var(--accent-green);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
         }
+        
+        .screenshot-item .caption h3::before {
+            content: '> ';
+            color: var(--text-muted);
+        }
+        
         .screenshot-item .caption p {
-            color: #888;
-            font-size: 0.9em;
+            color: var(--text-muted);
+            font-size: 12px;
         }
+        
+        .feature-list {
+            margin-top: 12px;
+        }
+        
+        .feature-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 12px;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            color: var(--accent-green);
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .feature-content p {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        
+        .formats-section {
+            margin-top: 12px;
+        }
+        
+        .format-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            flex-wrap: wrap;
+        }
+        
+        .format-label {
+            color: var(--text-muted);
+            min-width: 80px;
+        }
+        
+        .format-tag {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--accent-cyan);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+        
+        .footer-links a::before {
+            content: '$ ';
+            color: var(--text-muted);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+        
         /* Lightbox styles */
         .lightbox {
             display: none;
@@ -99,259 +317,292 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(13, 17, 23, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             cursor: pointer;
         }
+        
         .lightbox.active {
             display: flex;
         }
+        
         .lightbox img {
             max-width: 90%;
-            max-height: 90%;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-height: 85%;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
         }
+        
         .lightbox-close {
             position: absolute;
             top: 20px;
             right: 30px;
-            font-size: 40px;
-            color: white;
+            font-size: 32px;
+            color: var(--text-secondary);
             cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.2s;
+            transition: color 0.2s;
         }
+        
         .lightbox-close:hover {
-            opacity: 1;
+            color: var(--text-primary);
         }
+        
         .lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 50px;
-            color: white;
+            font-size: 40px;
+            color: var(--text-secondary);
             cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.2s;
+            transition: color 0.2s;
             user-select: none;
             padding: 20px;
         }
+        
         .lightbox-nav:hover {
-            opacity: 1;
+            color: var(--text-primary);
         }
-        .lightbox-prev {
-            left: 20px;
-        }
-        .lightbox-next {
-            right: 20px;
-        }
+        
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        
         .lightbox-caption {
             position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            color: white;
             text-align: center;
+            background: var(--bg-secondary);
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
         }
+        
         .lightbox-caption h3 {
-            font-size: 1.5em;
-            margin-bottom: 5px;
+            color: var(--accent-green);
+            font-size: 14px;
+            margin-bottom: 4px;
         }
+        
         .lightbox-caption p {
-            color: #888;
+            color: var(--text-muted);
+            font-size: 12px;
         }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
+        
+        /* Typing animation for hero */
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 2s steps(40, end);
         }
-        .feature {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .feature h3 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            color: #00d4ff;
-        }
-        .feature p {
-            color: #b0b0b0;
-            line-height: 1.6;
-        }
-        .section {
-            margin: 60px 0;
-        }
-        .section h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .formats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .format {
-            background: rgba(168, 85, 247, 0.2);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 60px;
-        }
-        footer a {
-            color: #00d4ff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        .copyright {
-            margin-top: 20px;
-            color: #666;
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="icon.png" alt="WaveBuddy Icon" class="logo" onerror="this.style.display='none'">
-            <h1>WaveBuddy</h1>
-            <p class="tagline">Audio & Video Editor for macOS</p>
-            <p style="color: #b0b0b0; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                See your sound. Transcribe speech to text. Import MP3, WAV, FLAC, MP4, MOV. Export WAV, FLAC, M4A, MP4. A native macOS waveform editor.
-            </p>
-            <a href="https://apps.apple.com/app/wavebuddy" target="_blank">
-                <img src="mac-app-store-badge.svg"
-                     alt="Download on the Mac App Store"
-                     class="app-store-badge">
-            </a>
-        </header>
+    <div class="terminal">
+        <!-- Header Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">wavebuddy --info</span>
+            </div>
+            <div class="terminal-body">
+                <div class="header-section">
+                    <img src="icon.png" alt="WaveBuddy Icon" class="logo" onerror="this.style.display='none'">
+                    <h1>WaveBuddy<span class="cursor">_</span></h1>
+                    <p class="tagline">Audio & Video Editor for macOS</p>
+                    <p class="output">
+                        <span class="comment">// See your sound. Transcribe speech to text.</span><br>
+                        <span class="comment">// Import MP3, WAV, FLAC, MP4, MOV.</span><br>
+                        <span class="comment">// Export WAV, FLAC, M4A, MP4.</span><br>
+                        <span class="comment">// A native macOS waveform editor.</span>
+                    </p>
+                    <a href="https://apps.apple.com/app/wavebuddy" target="_blank">
+                        <img src="mac-app-store-badge.svg" alt="Download on the Mac App Store" class="app-store-badge">
+                    </a>
+                </div>
+            </div>
+        </div>
 
-        <div class="screenshots">
-            <h2>See It In Action</h2>
-            <div class="screenshot-grid">
-                <div class="screenshot-item" onclick="openLightbox(0)">
-                    <img src="images/easy-workflow.png" alt="Easy Workflow">
-                    <div class="caption">
-                        <h3>Easy Workflow</h3>
-                        <p>Intuitive interface for seamless editing</p>
+        <!-- Screenshots Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">ls ./screenshots</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">Screenshots</div>
+                <div class="screenshot-grid">
+                    <div class="screenshot-item" onclick="openLightbox(0)">
+                        <img src="images/easy-workflow.png" alt="Easy Workflow">
+                        <div class="caption">
+                            <h3>easy-workflow</h3>
+                            <p>Intuitive interface for seamless editing</p>
+                        </div>
                     </div>
-                </div>
-                <div class="screenshot-item" onclick="openLightbox(1)">
-                    <img src="images/speech-to-text.png" alt="Speech to Text">
-                    <div class="caption">
-                        <h3>Speech to Text</h3>
-                        <p>On-device AI transcription</p>
+                    <div class="screenshot-item" onclick="openLightbox(1)">
+                        <img src="images/speech-to-text.png" alt="Speech to Text">
+                        <div class="caption">
+                            <h3>speech-to-text</h3>
+                            <p>On-device AI transcription</p>
+                        </div>
                     </div>
-                </div>
-                <div class="screenshot-item" onclick="openLightbox(2)">
-                    <img src="images/video-editing-effects.png" alt="Video Editing">
-                    <div class="caption">
-                        <h3>Video Editing</h3>
-                        <p>Edit video with visual waveforms</p>
+                    <div class="screenshot-item" onclick="openLightbox(2)">
+                        <img src="images/video-editing-effects.png" alt="Video Editing">
+                        <div class="caption">
+                            <h3>video-editing</h3>
+                            <p>Edit video with visual waveforms</p>
+                        </div>
                     </div>
-                </div>
-                <div class="screenshot-item" onclick="openLightbox(3)">
-                    <img src="images/edited-regions.png" alt="Edited Regions">
-                    <div class="caption">
-                        <h3>Precise Trimming</h3>
-                        <p>Select and edit regions with precision</p>
+                    <div class="screenshot-item" onclick="openLightbox(3)">
+                        <img src="images/edited-regions.png" alt="Edited Regions">
+                        <div class="caption">
+                            <h3>precise-trimming</h3>
+                            <p>Select and edit regions with precision</p>
+                        </div>
                     </div>
-                </div>
-                <div class="screenshot-item" onclick="openLightbox(4)">
-                    <img src="images/themes-waveform-style.png" alt="Themes">
-                    <div class="caption">
-                        <h3>Customizable Themes</h3>
-                        <p>Personalize your waveform colors</p>
+                    <div class="screenshot-item" onclick="openLightbox(4)">
+                        <img src="images/themes-waveform-style.png" alt="Themes">
+                        <div class="caption">
+                            <h3>themes</h3>
+                            <p>Personalize your waveform colors</p>
+                        </div>
                     </div>
-                </div>
-                <div class="screenshot-item" onclick="openLightbox(5)">
-                    <img src="images/equalizer.png" alt="Equalizer">
-                    <div class="caption">
-                        <h3>Equalizer</h3>
-                        <p>Fine-tune your audio with presets and custom settings</p>
+                    <div class="screenshot-item" onclick="openLightbox(5)">
+                        <img src="images/equalizer.png" alt="Equalizer">
+                        <div class="caption">
+                            <h3>equalizer</h3>
+                            <p>Fine-tune audio with presets</p>
+                        </div>
                     </div>
-                </div>
-                <div class="screenshot-item" onclick="openLightbox(6)">
-                    <img src="images/voice-effects.png" alt="Voice Effects">
-                    <div class="caption">
-                        <h3>Voice Effects</h3>
-                        <p>Transform your audio with effects</p>
+                    <div class="screenshot-item" onclick="openLightbox(6)">
+                        <img src="images/voice-effects.png" alt="Voice Effects">
+                        <div class="caption">
+                            <h3>voice-effects</h3>
+                            <p>Transform your audio with effects</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="features">
-            <div class="feature">
-                <h3>Waveform Visualization</h3>
-                <p>See your audio and video with stunning waveform displays. Choose between filled and line styles.</p>
+        <!-- Features Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">cat features.md</span>
             </div>
-            <div class="feature">
-                <h3>Speech to Text</h3>
-                <p>Transcribe audio using Apple's on-device AI. Fast, private, no internet required.</p>
-            </div>
-            <div class="feature">
-                <h3>Precise Editing</h3>
-                <p>Trim your clips with precision using visual trim handles or enter exact timestamps.</p>
-            </div>
-            <div class="feature">
-                <h3>Multiple Export Formats</h3>
-                <p>Export audio to WAV, FLAC, or M4A. Export video to MP4 with customizable quality.</p>
-            </div>
-            <div class="feature">
-                <h3>Customizable Themes</h3>
-                <p>Personalize your workspace with custom colors and themes that match your style.</p>
-            </div>
-            <div class="feature">
-                <h3>Native macOS App</h3>
-                <p>Built with SwiftUI for a fast, responsive experience that feels right at home on your Mac.</p>
+            <div class="terminal-body">
+                <div class="section-title">Features</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Waveform Visualization</h3>
+                            <p>See your audio and video with stunning waveform displays. Choose between filled and line styles.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Speech to Text</h3>
+                            <p>Transcribe audio using Apple's on-device AI. Fast, private, no internet required.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Precise Editing</h3>
+                            <p>Trim your clips with precision using visual trim handles or enter exact timestamps.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Multiple Export Formats</h3>
+                            <p>Export audio to WAV, FLAC, or M4A. Export video to MP4 with customizable quality.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Customizable Themes</h3>
+                            <p>Personalize your workspace with custom colors and themes that match your style.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Native macOS App</h3>
+                            <p>Built with SwiftUI for a fast, responsive experience that feels right at home on your Mac.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>Import Formats</h2>
-            <div class="formats">
-                <span class="format">MP3</span>
-                <span class="format">WAV</span>
-                <span class="format">FLAC</span>
-                <span class="format">M4A</span>
-                <span class="format">AAC</span>
-                <span class="format">AIFF</span>
-                <span class="format">MP4</span>
-                <span class="format">MOV</span>
+        <!-- Formats Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">wavebuddy --formats</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">Supported Formats</div>
+                <div class="formats-section">
+                    <div class="format-row">
+                        <span class="format-label">import:</span>
+                        <span class="format-tag">MP3</span>
+                        <span class="format-tag">WAV</span>
+                        <span class="format-tag">FLAC</span>
+                        <span class="format-tag">M4A</span>
+                        <span class="format-tag">AAC</span>
+                        <span class="format-tag">AIFF</span>
+                        <span class="format-tag">MP4</span>
+                        <span class="format-tag">MOV</span>
+                    </div>
+                    <div class="format-row">
+                        <span class="format-label">export:</span>
+                        <span class="format-tag">WAV</span>
+                        <span class="format-tag">FLAC</span>
+                        <span class="format-tag">M4A</span>
+                        <span class="format-tag">MP4</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>Export Formats</h2>
-            <div class="formats">
-                <span class="format">WAV</span>
-                <span class="format">FLAC</span>
-                <span class="format">M4A</span>
-                <span class="format">MP4</span>
+        <!-- Footer -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">links</span>
+            </div>
+            <div class="terminal-body">
+                <div class="footer-links">
+                    <a href="https://github.com/randomtask2000/wavebuddy-app/issues">support</a>
+                    <a href="privacy.html">privacy</a>
+                    <a href="https://github.com/randomtask2000/wavebuddy-app">github</a>
+                </div>
+                <p class="copyright">// (c) 2025 Emilio Nicoli. All rights reserved.</p>
             </div>
         </div>
-
-        <footer>
-            <a href="https://github.com/randomtask2000/wavebuddy-app/issues">Support</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="https://github.com/randomtask2000/wavebuddy-app">GitHub</a>
-            <p class="copyright">© 2025 Emilio Nicoli. All rights reserved.</p>
-        </footer>
     </div>
 
     <!-- Lightbox -->
@@ -368,13 +619,13 @@
 
     <script>
         const images = [
-            { src: 'images/easy-workflow.png', title: 'Easy Workflow', desc: 'Intuitive interface for seamless editing' },
-            { src: 'images/speech-to-text.png', title: 'Speech to Text', desc: 'On-device AI transcription' },
-            { src: 'images/video-editing-effects.png', title: 'Video Editing', desc: 'Edit video with visual waveforms' },
-            { src: 'images/edited-regions.png', title: 'Precise Trimming', desc: 'Select and edit regions with precision' },
-            { src: 'images/themes-waveform-style.png', title: 'Customizable Themes', desc: 'Personalize your waveform colors' },
-            { src: 'images/equalizer.png', title: 'Equalizer', desc: 'Fine-tune your audio with presets and custom settings' },
-            { src: 'images/voice-effects.png', title: 'Voice Effects', desc: 'Transform your audio with effects' }
+            { src: 'images/easy-workflow.png', title: 'easy-workflow', desc: 'Intuitive interface for seamless editing' },
+            { src: 'images/speech-to-text.png', title: 'speech-to-text', desc: 'On-device AI transcription' },
+            { src: 'images/video-editing-effects.png', title: 'video-editing', desc: 'Edit video with visual waveforms' },
+            { src: 'images/edited-regions.png', title: 'precise-trimming', desc: 'Select and edit regions with precision' },
+            { src: 'images/themes-waveform-style.png', title: 'themes', desc: 'Personalize your waveform colors' },
+            { src: 'images/equalizer.png', title: 'equalizer', desc: 'Fine-tune audio with presets' },
+            { src: 'images/voice-effects.png', title: 'voice-effects', desc: 'Transform your audio with effects' }
         ];
 
         let currentIndex = 0;
@@ -395,7 +646,7 @@
 
         function updateLightbox() {
             document.getElementById('lightbox-img').src = images[currentIndex].src;
-            document.getElementById('lightbox-title').textContent = images[currentIndex].title;
+            document.getElementById('lightbox-title').textContent = '> ' + images[currentIndex].title;
             document.getElementById('lightbox-desc').textContent = images[currentIndex].desc;
         }
 
@@ -411,7 +662,6 @@
             updateLightbox();
         }
 
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (!document.getElementById('lightbox').classList.contains('active')) return;
             if (e.key === 'Escape') {
