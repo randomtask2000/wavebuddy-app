@@ -47,75 +47,47 @@
         
         .terminal-window {
             background: var(--bg-secondary);
-            border: none;
+            border: 1px solid var(--accent-cyan);
             border-radius: 0;
             overflow: hidden;
             margin-bottom: 24px;
             position: relative;
-        }
-        
-        /* ASCII box drawing borders */
-        .terminal-window::before {
-            content: '╔' attr(data-title) '══════════════════════════════════════════════════════════════════════════════╗';
-            display: block;
-            color: var(--accent-cyan);
-            white-space: pre;
-            overflow: hidden;
-            font-size: 13px;
-            letter-spacing: -1px;
-        }
-        
-        .terminal-window::after {
-            content: '╚══════════════════════════════════════════════════════════════════════════════════════════════╝';
-            display: block;
-            color: var(--accent-cyan);
-            white-space: pre;
-            overflow: hidden;
-            font-size: 13px;
-            letter-spacing: -1px;
+            box-shadow: 0 0 10px rgba(57, 197, 207, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.3);
         }
         
         .terminal-header {
-            background: transparent;
-            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             gap: 8px;
-            border-bottom: none;
-            position: relative;
-        }
-        
-        .terminal-header::before {
-            content: '║';
-            color: var(--accent-cyan);
-            position: absolute;
-            left: 0;
-            font-size: 13px;
-        }
-        
-        .terminal-header::after {
-            content: '║';
-            color: var(--accent-cyan);
-            position: absolute;
-            right: 0;
-            font-size: 13px;
+            border-bottom: 1px solid var(--accent-cyan);
         }
         
         .terminal-btn {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             border-radius: 0;
-            border: 1px solid;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
         
-        .terminal-btn.red { background: transparent; border-color: #ff5f56; color: #ff5f56; }
-        .terminal-btn.yellow { background: transparent; border-color: #ffbd2e; color: #ffbd2e; }
-        .terminal-btn.green { background: transparent; border-color: #27ca40; color: #27ca40; }
+        .terminal-btn.red { background: #ff5f56; color: #000; }
+        .terminal-btn.red::after { content: 'x'; }
+        .terminal-btn.yellow { background: #ffbd2e; color: #000; }
+        .terminal-btn.yellow::after { content: '-'; }
+        .terminal-btn.green { background: #27ca40; color: #000; }
+        .terminal-btn.green::after { content: '+'; }
         
         .terminal-title {
             color: var(--accent-green);
             font-size: 13px;
             margin-left: 8px;
+            flex: 1;
+            text-align: center;
         }
         
         .terminal-title::before {
@@ -129,49 +101,7 @@
         }
         
         .terminal-body {
-            padding: 12px 20px;
-            position: relative;
-        }
-        
-        .terminal-body::before {
-            content: '║';
-            color: var(--accent-cyan);
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            font-size: 13px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            writing-mode: vertical-lr;
-            letter-spacing: -3px;
-        }
-        
-        .terminal-body::after {
-            content: '║';
-            color: var(--accent-cyan);
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            font-size: 13px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            writing-mode: vertical-lr;
-            letter-spacing: -3px;
-        }
-        
-        /* Separator line */
-        .terminal-separator {
-            color: var(--accent-cyan);
-            font-size: 13px;
-            margin: 12px 0;
-            letter-spacing: -1px;
-            overflow: hidden;
-        }
-        
-        .terminal-separator::before {
-            content: '╠══════════════════════════════════════════════════════════════════════════════════════════════╣';
+            padding: 16px 20px;
         }
         
         .prompt {
@@ -255,21 +185,16 @@
             color: var(--accent-green);
             font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             margin-bottom: 16px;
-            padding: 4px 0;
-            border-bottom: 1px dashed var(--accent-cyan);
+            padding: 8px 12px;
+            background: linear-gradient(90deg, var(--bg-tertiary) 0%, transparent 100%);
+            border-left: 3px solid var(--accent-cyan);
         }
         
         .section-title::before {
-            content: '┌─[ ';
+            content: '> ';
             color: var(--accent-cyan);
-        }
-        
-        .section-title::after {
-            content: ' ]─────────────────────────────────────────';
-            color: var(--accent-cyan);
-            overflow: hidden;
         }
         
         .screenshot-grid {
@@ -281,30 +206,17 @@
         
         .screenshot-item {
             background: var(--bg-tertiary);
-            border: 2px solid var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
             border-radius: 0;
             overflow: hidden;
             cursor: pointer;
             transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-            position: relative;
-        }
-        
-        .screenshot-item::before {
-            content: '┌─────────────────────────────────────┐';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            color: var(--accent-cyan);
-            font-size: 10px;
-            overflow: hidden;
-            z-index: 1;
         }
         
         .screenshot-item:hover {
             border-color: var(--accent-green);
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(63, 185, 80, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 20px rgba(57, 197, 207, 0.3);
         }
         
         .screenshot-item img {
@@ -315,7 +227,7 @@
         
         .screenshot-item .caption {
             padding: 12px;
-            border-top: 2px solid var(--accent-cyan);
+            border-top: 1px solid var(--accent-cyan);
             background: var(--bg-secondary);
         }
         
@@ -327,18 +239,15 @@
         }
         
         .screenshot-item .caption h3::before {
-            content: './';
+            content: '$ ./';
             color: var(--accent-cyan);
+            margin-right: 2px;
         }
         
         .screenshot-item .caption p {
             color: var(--text-muted);
             font-size: 12px;
-        }
-        
-        .screenshot-item .caption p::before {
-            content: '   # ';
-            color: var(--text-muted);
+            padding-left: 28px;
         }
         
         .feature-list {
@@ -346,36 +255,26 @@
         }
         
         .feature-item {
-            padding: 10px 0;
-            padding-left: 12px;
-            border-left: 1px solid var(--border-color);
-            border-bottom: none;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             gap: 12px;
-            margin-left: 8px;
-            position: relative;
+            transition: background 0.2s;
         }
         
-        .feature-item::before {
-            content: '├──';
-            color: var(--accent-cyan);
-            position: absolute;
-            left: -12px;
-            font-size: 12px;
+        .feature-item:hover {
+            background: var(--bg-tertiary);
         }
         
         .feature-item:last-child {
-            border-left: none;
-        }
-        
-        .feature-item:last-child::before {
-            content: '└──';
+            border-bottom: none;
         }
         
         .feature-icon {
             color: var(--accent-green);
             flex-shrink: 0;
             font-size: 12px;
+            font-family: monospace;
         }
         
         .feature-content h3 {
@@ -385,15 +284,9 @@
             margin-bottom: 4px;
         }
         
-        .feature-content h3::before {
-            content: '» ';
-            color: var(--accent-purple);
-        }
-        
         .feature-content p {
             color: var(--text-secondary);
             font-size: 12px;
-            padding-left: 14px;
         }
         
         .feature-category {
@@ -436,45 +329,42 @@
         
         .format-tag {
             background: var(--bg-tertiary);
-            border: 1px solid var(--accent-cyan);
-            padding: 4px 10px;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
             border-radius: 0;
             font-size: 12px;
             color: var(--accent-cyan);
-            position: relative;
+            transition: all 0.2s;
         }
         
-        .format-tag::before {
-            content: '[';
-            color: var(--accent-purple);
-        }
-        
-        .format-tag::after {
-            content: ']';
-            color: var(--accent-purple);
+        .format-tag:hover {
+            border-color: var(--accent-cyan);
+            background: var(--bg-primary);
+            box-shadow: 0 0 10px rgba(57, 197, 207, 0.3);
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 16px;
             margin-top: 16px;
             flex-wrap: wrap;
         }
         
         .footer-links a {
-            color: var(--accent-blue);
+            color: var(--accent-cyan);
             text-decoration: none;
             font-size: 13px;
             transition: color 0.2s, background 0.2s;
-            padding: 4px 12px;
-            border: 1px solid var(--accent-cyan);
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
         }
         
         .footer-links a:hover {
-            color: var(--bg-primary);
-            background: var(--accent-cyan);
-            text-decoration: none;
+            color: var(--accent-green);
+            border-color: var(--accent-cyan);
+            background: var(--bg-primary);
         }
         
         .footer-links a::before {
@@ -488,17 +378,7 @@
             font-size: 12px;
             margin-top: 16px;
             padding-top: 16px;
-            border-top: 1px dashed var(--accent-cyan);
-        }
-        
-        .copyright::before {
-            content: '/* ';
-            color: var(--accent-cyan);
-        }
-        
-        .copyright::after {
-            content: ' */';
-            color: var(--accent-cyan);
+            border-top: 1px solid var(--border-color);
         }
         
         .version-badge {
@@ -515,46 +395,12 @@
         .keyboard-shortcut {
             background: var(--bg-primary);
             border: 1px solid var(--accent-orange);
-            padding: 2px 6px;
-            border-radius: 0;
+            padding: 2px 8px;
+            border-radius: 2px;
             font-size: 11px;
             color: var(--accent-orange);
             font-weight: bold;
-        }
-        
-        .keyboard-shortcut::before {
-            content: '<';
-            color: var(--accent-cyan);
-        }
-        
-        .keyboard-shortcut::after {
-            content: '>';
-            color: var(--accent-cyan);
-        }
-        
-        /* Scanline effect for retro CRT look */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.1),
-                rgba(0, 0, 0, 0.1) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.3;
-        }
-        
-        /* Subtle glow on text */
-        .terminal-window {
-            text-shadow: 0 0 2px rgba(57, 197, 207, 0.3);
+            white-space: nowrap;
         }
         
         /* Lightbox styles */
