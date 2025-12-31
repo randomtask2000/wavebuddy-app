@@ -697,6 +697,80 @@
             </div>
         </div>
 
+        <!-- Non-Destructive Workflow Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">cat workflow.md</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">Non-Destructive Workflow</div>
+                
+                <div class="feature-category">// Export (Non-Destructive)</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-green);">[safe]</span>
+                        <div class="feature-content">
+                            <h3>Export Clip... <span class="keyboard-shortcut">⌘⇧E</span></h3>
+                            <p>Creates a new file. Original source is never modified. Choose format, sample rate, channels, and normalization.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-green);">[safe]</span>
+                        <div class="feature-content">
+                            <h3>Quick Export <span class="keyboard-shortcut">⌥⌘S</span></h3>
+                            <p>Fast export of master mix to new file. Auto-generates filename with timestamp. WAV for audio, MP4 for video.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-green);">[safe]</span>
+                        <div class="feature-content">
+                            <h3>Export Master... <span class="keyboard-shortcut">⌥⇧⌘E</span></h3>
+                            <p>Full export options for multi-track mix. Option to embed recoverable project data.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// Save (Destructive)</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-red);">[!]</span>
+                        <div class="feature-content">
+                            <h3>Save Clip <span class="keyboard-shortcut">⌘S</span></h3>
+                            <p>Overwrites the original source file. Shows confirmation dialog. Use only when you want to update the original.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// Recoverable Projects</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-cyan);">[*]</span>
+                        <div class="feature-content">
+                            <h3>Embedded Project Data</h3>
+                            <p>Export master mix with "Recoverable" option to embed original clip audio. File plays normally but WaveBuddy can restore the full project.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-cyan);">[*]</span>
+                        <div class="feature-content">
+                            <h3>Auto Recovery on Import</h3>
+                            <p>Opening a file with embedded data automatically recovers the project. Hold <span class="keyboard-shortcut">⌘</span> while dragging to show recovery dialog.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon" style="color: var(--accent-cyan);">[*]</span>
+                        <div class="feature-content">
+                            <h3>Self-Contained Archives</h3>
+                            <p>No original files needed. Each clip's audio is compressed (zlib + base64) and stored in MP4, M4A, MOV, WAV, AIFF, or FLAC.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Formats Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
