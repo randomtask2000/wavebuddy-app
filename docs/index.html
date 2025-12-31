@@ -64,23 +64,15 @@
             border-bottom: 1px solid var(--accent-cyan);
         }
         
-        .terminal-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 0;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .terminal-icon {
+            color: var(--accent-cyan);
+            font-size: 14px;
             font-weight: bold;
         }
         
-        .terminal-btn.red { background: #ff5f56; color: #000; }
-        .terminal-btn.red::after { content: 'x'; }
-        .terminal-btn.yellow { background: #ffbd2e; color: #000; }
-        .terminal-btn.yellow::after { content: '-'; }
-        .terminal-btn.green { background: #27ca40; color: #000; }
-        .terminal-btn.green::after { content: '+'; }
+        .terminal-icon::before {
+            content: '>_';
+        }
         
         .terminal-title {
             color: var(--accent-green);
@@ -491,9 +483,9 @@
         <!-- Header Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">wavebuddy --info</span>
             </div>
             <div class="terminal-body">
@@ -518,9 +510,9 @@
         <!-- Screenshots Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">ls ./screenshots</span>
             </div>
             <div class="terminal-body">
@@ -582,9 +574,9 @@
         <!-- Features Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">cat features.md</span>
             </div>
             <div class="terminal-body">
@@ -752,9 +744,9 @@
         <!-- Non-Destructive Workflow Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">cat workflow.md</span>
             </div>
             <div class="terminal-body">
@@ -826,9 +818,9 @@
         <!-- Formats Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">wavebuddy --formats</span>
             </div>
             <div class="terminal-body">
@@ -860,9 +852,9 @@
         <!-- Keyboard Shortcuts Terminal -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">cat shortcuts.md</span>
             </div>
             <div class="terminal-body">
@@ -910,9 +902,9 @@
         <!-- Footer -->
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="terminal-btn red"></span>
-                <span class="terminal-btn yellow"></span>
-                <span class="terminal-btn green"></span>
+                <span class="terminal-icon"></span>
+                
+                
                 <span class="terminal-title">links</span>
             </div>
             <div class="terminal-body">
