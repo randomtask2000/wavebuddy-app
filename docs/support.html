@@ -5,157 +5,419 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support - WaveBuddy</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --accent-cyan: #39c5cf;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #ffffff;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', 'Monaco', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             min-height: 100vh;
+            line-height: 1.6;
+            font-size: 14px;
         }
-        .container {
-            max-width: 700px;
+        
+        .terminal {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
         }
-        header {
+        
+        .terminal-window {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 0;
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: 0 0 10px rgba(57, 197, 207, 0.2), inset 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .terminal-header {
+            background: var(--bg-tertiary);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--accent-cyan);
+        }
+        
+        .terminal-icon {
+            color: var(--accent-cyan);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .terminal-icon::before {
+            content: '>_';
+        }
+        
+        .terminal-title {
+            color: var(--accent-green);
+            font-size: 13px;
+            margin-left: 8px;
+            flex: 1;
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 40px;
         }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        
+        .terminal-title::before {
+            content: '[ ';
+            color: var(--accent-cyan);
         }
-        h2 {
-            font-size: 1.5em;
-            margin: 30px 0 15px;
-            color: #00d4ff;
+        
+        .terminal-title::after {
+            content: ' ]';
+            color: var(--accent-cyan);
         }
-        h3 {
-            font-size: 1.2em;
-            margin: 20px 0 10px;
-            color: #a855f7;
+        
+        .terminal-body {
+            padding: 16px 20px;
         }
-        p, li {
-            color: #b0b0b0;
-            line-height: 1.8;
-            margin-bottom: 15px;
+        
+        h1.pixel-title {
+            font-family: 'Silkscreen', cursive;
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent-cyan);
+            text-shadow: 
+                2px 2px 0 #1a5a5e,
+                4px 4px 0 var(--bg-primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
         }
-        ul {
-            margin-left: 20px;
+        
+        .header-section {
+            text-align: center;
+            padding: 20px 0;
         }
-        a {
-            color: #00d4ff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .back-link {
-            display: inline-block;
+        
+        .tagline {
+            color: var(--text-secondary);
             margin-bottom: 20px;
         }
+        
+        .section-title {
+            color: var(--accent-green);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            padding: 8px 12px;
+            background: linear-gradient(90deg, var(--bg-tertiary) 0%, transparent 100%);
+            border-left: 3px solid var(--accent-cyan);
+        }
+        
+        .section-title::before {
+            content: '> ';
+            color: var(--accent-cyan);
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            margin-bottom: 16px;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            transition: all 0.2s;
+        }
+        
+        .back-link:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-green);
+        }
+        
+        .back-link::before {
+            content: '< ';
+            color: var(--accent-green);
+        }
+        
         .cta-button {
             display: inline-block;
-            background: linear-gradient(90deg, #00d4ff, #a855f7);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            padding: 12px 24px;
             font-weight: 600;
-            margin: 20px 0;
-        }
-        .cta-button:hover {
+            margin: 16px 0;
             text-decoration: none;
-            opacity: 0.9;
+            border: none;
+            transition: all 0.2s;
         }
+        
+        .cta-button:hover {
+            background: var(--accent-green);
+            box-shadow: 0 0 20px rgba(63, 185, 80, 0.4);
+        }
+        
+        .cta-button::before {
+            content: '> ';
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+        
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        li::marker {
+            color: var(--accent-cyan);
+        }
+        
         .faq {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 15px 0;
+            background: var(--bg-tertiary);
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-left: 3px solid var(--accent-purple);
         }
-        .faq strong {
-            color: #ffffff;
+        
+        .faq h3 {
+            color: var(--accent-blue);
+            font-size: 13px;
+            margin-bottom: 8px;
         }
-        footer {
+        
+        .faq h3::before {
+            content: 'Q: ';
+            color: var(--accent-purple);
+        }
+        
+        .faq p {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+        
+        .faq p::before {
+            content: 'A: ';
+            color: var(--accent-green);
+            margin-left: -20px;
+        }
+        
+        .contact-info {
+            background: var(--bg-tertiary);
+            padding: 16px 20px;
+            margin: 16px 0;
+            border: 1px solid var(--border-color);
+        }
+        
+        .contact-info a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-green);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s, background 0.2s;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-green);
+            border-color: var(--accent-cyan);
+            background: var(--bg-primary);
+        }
+        
+        .footer-links a::before {
+            content: '> ';
+            color: var(--accent-green);
+        }
+        
+        .copyright {
             text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 60px;
-            color: #666;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
-
-        <header>
-            <h1>Support</h1>
-            <p style="color: #888;">Need help with WaveBuddy? We're here for you.</p>
-        </header>
-
-        <main>
-            <h2>Get Help</h2>
-            <p>For bug reports, feature requests, and general questions, please visit our GitHub Issues page:</p>
-            <a href="https://github.com/randomtask2000/wavebuddy-app/issues" class="cta-button">Open Support Ticket</a>
-
-            <h2>How to Report a Bug</h2>
-            <p>When reporting a bug, please include:</p>
-            <ul>
-                <li>A description of the problem</li>
-                <li>Steps to reproduce the issue</li>
-                <li>Your macOS version</li>
-                <li>The file type you were working with (if applicable)</li>
-            </ul>
-
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq">
-                <h3>What audio formats can I import?</h3>
-                <p>WaveBuddy supports most common audio formats including MP3, WAV, FLAC, M4A, AAC, and AIFF.</p>
+    <div class="terminal">
+        <a href="index.html" class="back-link">back to home</a>
+        
+        <!-- Header -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">support --help</span>
             </div>
-
-            <div class="faq">
-                <h3>What video formats can I import?</h3>
-                <p>WaveBuddy supports MP4, MOV, and other QuickTime-compatible formats.</p>
+            <div class="terminal-body">
+                <div class="header-section">
+                    <h1 class="pixel-title">Support</h1>
+                    <p class="tagline">Need help with WaveBuddy? We're here for you.</p>
+                </div>
             </div>
+        </div>
 
-            <div class="faq">
-                <h3>What formats can I export to?</h3>
-                <p>Audio can be exported to WAV, FLAC, or M4A. Video can be exported to MP4.</p>
+        <!-- Get Help -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">cat contact.md</span>
             </div>
-
-            <div class="faq">
-                <h3>Why can't I hear audio?</h3>
-                <p>Make sure your system volume is up and the correct output device is selected in System Settings.</p>
+            <div class="terminal-body">
+                <div class="section-title">Get Help</div>
+                <p>For bug reports, feature requests, and general questions, please visit our GitHub Issues page:</p>
+                <a href="https://github.com/randomtask2000/wavebuddy-app/issues" class="cta-button">Open Support Ticket</a>
+                
+                <div class="contact-info">
+                    <p><strong style="color: var(--accent-cyan);">Email:</strong> <a href="mailto:support@wave-buddy.com">support@wave-buddy.com</a></p>
+                    <p style="margin-bottom: 0;"><strong style="color: var(--accent-cyan);">GitHub:</strong> <a href="https://github.com/randomtask2000/wavebuddy-app">github.com/randomtask2000/wavebuddy-app</a></p>
+                </div>
             </div>
+        </div>
 
-            <div class="faq">
-                <h3>How do I change the waveform color?</h3>
-                <p>Use the color picker in the toolbar to customize your waveform appearance.</p>
+        <!-- Bug Reports -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">cat bug-report.md</span>
             </div>
-
-            <div class="faq">
-                <h3>How do I trim audio/video?</h3>
-                <p>Use the trim handles on the waveform or enter specific start/end times in the trim panel.</p>
+            <div class="terminal-body">
+                <div class="section-title">How to Report a Bug</div>
+                <p>When reporting a bug, please include:</p>
+                <ul>
+                    <li>A description of the problem</li>
+                    <li>Steps to reproduce the issue</li>
+                    <li>Your macOS version (e.g., Sonoma 14.2)</li>
+                    <li>WaveBuddy version (from About WaveBuddy)</li>
+                    <li>The file type you were working with (if applicable)</li>
+                    <li>Any error messages you see</li>
+                </ul>
             </div>
+        </div>
 
-            <h2>System Requirements</h2>
-            <ul>
-                <li>macOS 14.0 (Sonoma) or later</li>
-                <li>Apple Silicon or Intel Mac</li>
-            </ul>
-        </main>
+        <!-- FAQ -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">cat faq.md</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">Frequently Asked Questions</div>
+                
+                <div class="faq">
+                    <h3>What audio formats can I import?</h3>
+                    <p>MP3, WAV, FLAC, M4A, AAC, and AIFF.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>What video formats can I import?</h3>
+                    <p>MP4, MOV, and other QuickTime-compatible formats.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>What formats can I export to?</h3>
+                    <p>Audio: WAV, FLAC, M4A. Video: MP4, MOV.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>Why can't I hear audio?</h3>
+                    <p>Check system volume and output device in System Settings > Sound.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>How do I change the waveform color?</h3>
+                    <p>Settings > Themes. Choose from 12+ color themes or customize.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>How do I record audio?</h3>
+                    <p>Click the record button in the toolbar. Select input: microphone, system audio, or screen.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>Can I recover a project from an exported file?</h3>
+                    <p>Yes! Export with "Recoverable" option. Drag the file back into WaveBuddy to restore.</p>
+                </div>
+                
+                <div class="faq">
+                    <h3>Does transcription require internet?</h3>
+                    <p>No. Speech-to-text uses Apple's on-device AI. Completely offline and private.</p>
+                </div>
+            </div>
+        </div>
 
-        <footer>
-            <p>© 2025 Emilio Nicoli. All rights reserved.</p>
-        </footer>
+        <!-- System Requirements -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">wavebuddy --requirements</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">System Requirements</div>
+                <ul>
+                    <li>macOS 14.0 (Sonoma) or later</li>
+                    <li>Apple Silicon (M1/M2/M3) or Intel Mac</li>
+                    <li>4GB RAM minimum (8GB recommended)</li>
+                    <li>100MB disk space</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-icon"></span>
+                <span class="terminal-title">links</span>
+            </div>
+            <div class="terminal-body">
+                <div class="footer-links">
+                    <a href="index.html">home</a>
+                    <a href="privacy.html">privacy</a>
+                    <a href="https://github.com/randomtask2000/wavebuddy-app">github</a>
+                </div>
+                <p class="copyright">© 2025 Emilio Nicoli. All rights reserved.</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
