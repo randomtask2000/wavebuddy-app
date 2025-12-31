@@ -27,6 +27,7 @@
             --accent-orange: #d29922;
             --accent-red: #f85149;
             --accent-cyan: #39c5cf;
+            --accent-pink: #db61a2;
         }
         
         body {
@@ -249,6 +250,21 @@
             font-size: 12px;
         }
         
+        .feature-category {
+            color: var(--accent-orange);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .feature-category:first-child {
+            margin-top: 0;
+        }
+        
         .formats-section {
             margin-top: 12px;
         }
@@ -307,6 +323,26 @@
             margin-top: 16px;
             padding-top: 16px;
             border-top: 1px solid var(--border-color);
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+        
+        .keyboard-shortcut {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: var(--accent-orange);
         }
         
         /* Lightbox styles */
@@ -390,18 +426,6 @@
             color: var(--text-muted);
             font-size: 12px;
         }
-        
-        /* Typing animation for hero */
-        .typing-text {
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 2s steps(40, end);
-        }
-        
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
     </style>
 </head>
 <body>
@@ -418,9 +442,10 @@
                 <div class="header-section">
                     <img src="icon.png" alt="WaveBuddy Icon" class="logo" onerror="this.style.display='none'">
                     <h1>WaveBuddy<span class="cursor">_</span></h1>
-                    <p class="tagline">Audio & Video Editor for macOS</p>
+                    <p class="tagline">Audio & Video Editor for macOS <span class="version-badge">v2.0</span></p>
                     <p class="output">
                         <span class="comment">// See your sound. Transcribe speech to text.</span><br>
+                        <span class="comment">// Multi-track timeline with live recording.</span><br>
                         <span class="comment">// Import MP3, WAV, FLAC, MP4, MOV.</span><br>
                         <span class="comment">// Export WAV, FLAC, M4A, MP4.</span><br>
                         <span class="comment">// A native macOS waveform editor.</span>
@@ -447,7 +472,7 @@
                         <img src="images/easy-workflow.png" alt="Easy Workflow">
                         <div class="caption">
                             <h3>easy-workflow</h3>
-                            <p>Intuitive interface for seamless editing</p>
+                            <p>Multi-track timeline with drag & drop</p>
                         </div>
                     </div>
                     <div class="screenshot-item" onclick="openLightbox(1)">
@@ -467,29 +492,29 @@
                     <div class="screenshot-item" onclick="openLightbox(3)">
                         <img src="images/edited-regions.png" alt="Edited Regions">
                         <div class="caption">
-                            <h3>precise-trimming</h3>
-                            <p>Select and edit regions with precision</p>
+                            <h3>edited-regions</h3>
+                            <p>Visual edit tracking with undo</p>
                         </div>
                     </div>
                     <div class="screenshot-item" onclick="openLightbox(4)">
                         <img src="images/themes-waveform-style.png" alt="Themes">
                         <div class="caption">
                             <h3>themes</h3>
-                            <p>Personalize your waveform colors</p>
+                            <p>12+ color themes including Glass</p>
                         </div>
                     </div>
                     <div class="screenshot-item" onclick="openLightbox(5)">
                         <img src="images/equalizer.png" alt="Equalizer">
                         <div class="caption">
                             <h3>equalizer</h3>
-                            <p>Fine-tune audio with presets</p>
+                            <p>10-band EQ with pro presets</p>
                         </div>
                     </div>
                     <div class="screenshot-item" onclick="openLightbox(6)">
                         <img src="images/voice-effects.png" alt="Voice Effects">
                         <div class="caption">
                             <h3>voice-effects</h3>
-                            <p>Transform your audio with effects</p>
+                            <p>8 creative voice transformations</p>
                         </div>
                     </div>
                 </div>
@@ -506,47 +531,160 @@
             </div>
             <div class="terminal-body">
                 <div class="section-title">Features</div>
+                
+                <div class="feature-category">// Recording</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Live Audio Recording</h3>
+                            <p>Record from microphone, system audio, or screen with real-time waveform preview. Clips appear instantly on timeline.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Screen Recording</h3>
+                            <p>Capture full screen or select a region. Uses ScreenCaptureKit for high-quality recording with audio.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// Multi-Track Timeline</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Multi-Track Editing</h3>
+                            <p>Arrange multiple audio and video clips on separate tracks. Drag, trim, copy/paste with ghost previews.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Video Thumbnail Strips</h3>
+                            <p>Video clips display thumbnails as background with scrub zoom effect. Thumbnails scale up near playhead.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Clip Snapping</h3>
+                            <p>Yellow guide lines show snap targets. 15px threshold for precise clip alignment.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Timeline Zoom</h3>
+                            <p>Pinch to zoom, <span class="keyboard-shortcut">Option+Scroll</span> or <span class="keyboard-shortcut">⌥⌘+/-</span>. Smart time ruler adapts to zoom level.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Keyboard Clip Control</h3>
+                            <p>Arrow keys move clips between tracks and timeline. <span class="keyboard-shortcut">⌘C</span>/<span class="keyboard-shortcut">⌘V</span> to copy/paste at playhead.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// Waveform Editor</div>
                 <div class="feature-list">
                     <div class="feature-item">
                         <span class="feature-icon">[+]</span>
                         <div class="feature-content">
                             <h3>Waveform Visualization</h3>
-                            <p>See your audio and video with stunning waveform displays. Choose between filled and line styles.</p>
+                            <p>Stunning waveform displays with filled or line styles. Choose from 12+ color themes.</p>
                         </div>
                     </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Edited Region Overlays</h3>
+                            <p>Visual tracking of all edits with colored overlays. Hover for undo button and quick actions.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Selection Actions</h3>
+                            <p>Floating toolbar on selection with Copy, Cut, Delete, Copy to New Window buttons.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// Audio Effects</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>10-Band Equalizer</h3>
+                            <p>Full parametric EQ with Catmull-Rom response curve. Presets: Voice, Podcast, Loudness, Rock, Jazz, Classical, Electronic.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Voice Effects</h3>
+                            <p>8 effects: Robot (STFT phase vocoder), Chipmunk, Deep Voice, Echo, Radio, Underwater, Megaphone, Whisper. Level-matched output.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>Normalize & Amplify</h3>
+                            <p>Automatic loudness normalization or manual gain adjustment with real-time preview.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// Speech & Video</div>
+                <div class="feature-list">
                     <div class="feature-item">
                         <span class="feature-icon">[+]</span>
                         <div class="feature-content">
                             <h3>Speech to Text</h3>
-                            <p>Transcribe audio using Apple's on-device AI. Fast, private, no internet required.</p>
+                            <p>On-device AI transcription using Apple's Speech framework. Fast, private, no internet required.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="feature-icon">[+]</span>
                         <div class="feature-content">
-                            <h3>Precise Editing</h3>
-                            <p>Trim your clips with precision using visual trim handles or enter exact timestamps.</p>
+                            <h3>Unified Video Player</h3>
+                            <p>Single video preview works for both Master timeline and Editor. Scrubs to current time for instant preview.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="feature-icon">[+]</span>
                         <div class="feature-content">
-                            <h3>Multiple Export Formats</h3>
-                            <p>Export audio to WAV, FLAC, or M4A. Export video to MP4 with customizable quality.</p>
+                            <h3>Multi-Track Video Export</h3>
+                            <p>Export master mix as MP4/MOV. Gaps render as black frames. Supports multiple video clips at different positions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-category">// UI & Themes</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">[+]</span>
+                        <div class="feature-content">
+                            <h3>12+ Color Themes</h3>
+                            <p>Classic, Ocean, Sunset, Forest, Neon, Midnight, Cloud, Glass, Sakura, Orchid, Crimson, and more.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="feature-icon">[+]</span>
                         <div class="feature-content">
-                            <h3>Customizable Themes</h3>
-                            <p>Personalize your workspace with custom colors and themes that match your style.</p>
+                            <h3>Background Transparency</h3>
+                            <p>Adjustable UI transparency from 30% to 100%. Glass theme looks great with see-through effect.</p>
                         </div>
                     </div>
                     <div class="feature-item">
                         <span class="feature-icon">[+]</span>
                         <div class="feature-content">
-                            <h3>Native macOS App</h3>
-                            <p>Built with SwiftUI for a fast, responsive experience that feels right at home on your Mac.</p>
+                            <h3>Native macOS</h3>
+                            <p>Built with SwiftUI for fast, responsive experience. Feels right at home on your Mac.</p>
                         </div>
                     </div>
                 </div>
@@ -581,6 +719,57 @@
                         <span class="format-tag">FLAC</span>
                         <span class="format-tag">M4A</span>
                         <span class="format-tag">MP4</span>
+                        <span class="format-tag">MOV</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Terminal -->
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-btn red"></span>
+                <span class="terminal-btn yellow"></span>
+                <span class="terminal-btn green"></span>
+                <span class="terminal-title">cat shortcuts.md</span>
+            </div>
+            <div class="terminal-body">
+                <div class="section-title">Keyboard Shortcuts</div>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">[*]</span>
+                        <div class="feature-content">
+                            <h3><span class="keyboard-shortcut">⌘Z</span> / <span class="keyboard-shortcut">⇧⌘Z</span></h3>
+                            <p>Unified undo/redo for waveform edits and clip movements</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[*]</span>
+                        <div class="feature-content">
+                            <h3><span class="keyboard-shortcut">⌘C</span> / <span class="keyboard-shortcut">⌘V</span></h3>
+                            <p>Copy/paste clips at playhead position</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[*]</span>
+                        <div class="feature-content">
+                            <h3><span class="keyboard-shortcut">⌥⌘E</span> / <span class="keyboard-shortcut">⌥⌘V</span></h3>
+                            <p>Open Equalizer / Voice Effects</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[*]</span>
+                        <div class="feature-content">
+                            <h3><span class="keyboard-shortcut">⌥⌘+</span> / <span class="keyboard-shortcut">⌥⌘-</span> / <span class="keyboard-shortcut">⌥⌘0</span></h3>
+                            <p>Zoom in / Zoom out / Zoom to fit</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">[*]</span>
+                        <div class="feature-content">
+                            <h3><span class="keyboard-shortcut">↑↓←→</span> / <span class="keyboard-shortcut">⇧←→</span></h3>
+                            <p>Move clips between tracks/timeline, Shift for 1s steps</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -619,13 +808,13 @@
 
     <script>
         const images = [
-            { src: 'images/easy-workflow.png', title: 'easy-workflow', desc: 'Intuitive interface for seamless editing' },
+            { src: 'images/easy-workflow.png', title: 'easy-workflow', desc: 'Multi-track timeline with drag & drop' },
             { src: 'images/speech-to-text.png', title: 'speech-to-text', desc: 'On-device AI transcription' },
             { src: 'images/video-editing-effects.png', title: 'video-editing', desc: 'Edit video with visual waveforms' },
-            { src: 'images/edited-regions.png', title: 'precise-trimming', desc: 'Select and edit regions with precision' },
-            { src: 'images/themes-waveform-style.png', title: 'themes', desc: 'Personalize your waveform colors' },
-            { src: 'images/equalizer.png', title: 'equalizer', desc: 'Fine-tune audio with presets' },
-            { src: 'images/voice-effects.png', title: 'voice-effects', desc: 'Transform your audio with effects' }
+            { src: 'images/edited-regions.png', title: 'edited-regions', desc: 'Visual edit tracking with undo' },
+            { src: 'images/themes-waveform-style.png', title: 'themes', desc: '12+ color themes including Glass' },
+            { src: 'images/equalizer.png', title: 'equalizer', desc: '10-band EQ with pro presets' },
+            { src: 'images/voice-effects.png', title: 'voice-effects', desc: '8 creative voice transformations' }
         ];
 
         let currentIndex = 0;
