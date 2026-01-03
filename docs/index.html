@@ -19,15 +19,15 @@
             --bg-tertiary: #f5f5f5;
             --border-color: #000000;
             --text-primary: #000000;
-            --text-secondary: #333333;
-            --text-muted: #666666;
-            --accent-green: #000000;
-            --accent-blue: #000000;
-            --accent-purple: #000000;
-            --accent-orange: #000000;
-            --accent-red: #cc0000;
-            --accent-cyan: #000000;
-            --accent-pink: #000000;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --accent-green: #6a9955;
+            --accent-blue: #569cd6;
+            --accent-purple: #c586c0;
+            --accent-orange: #ce9178;
+            --accent-red: #f14c4c;
+            --accent-cyan: #4ec9b0;
+            --accent-yellow: #dcdcaa;
         }
         
         body {
@@ -75,7 +75,7 @@
         }
         
         .terminal-title {
-            color: var(--accent-green);
+            color: var(--accent-blue);
             font-size: 13px;
             margin-left: 8px;
             flex: 1;
@@ -153,7 +153,7 @@
         
         h1.pixel-title .cursor {
             animation: blink 1s infinite;
-            color: var(--accent-green);
+            color: var(--accent-cyan);
         }
         
         @keyframes blink {
@@ -181,14 +181,14 @@
         }
         
         .section-title {
-            color: var(--text-primary);
+            color: var(--accent-blue);
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 16px;
             padding: 8px 12px;
             background: linear-gradient(90deg, var(--bg-tertiary) 0%, transparent 100%);
-            border-left: 3px solid var(--border-color);
+            border-left: 3px solid var(--accent-blue);
         }
         
         .section-title::before {
@@ -231,15 +231,15 @@
         }
         
         .screenshot-item .caption h3 {
-            color: var(--accent-green);
+            color: var(--accent-blue);
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 4px;
         }
         
         .screenshot-item .caption h3::before {
             content: '$ ./';
-            color: var(--accent-cyan);
+            color: var(--accent-green);
             margin-right: 2px;
         }
         
@@ -274,7 +274,7 @@
         }
         
         .feature-icon {
-            color: var(--accent-green);
+            color: var(--accent-cyan);
             flex-shrink: 0;
             font-size: 12px;
             font-family: monospace;
@@ -283,7 +283,7 @@
         .feature-content h3 {
             color: var(--accent-blue);
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 4px;
         }
         
@@ -293,7 +293,7 @@
         }
         
         .feature-category {
-            color: var(--accent-orange);
+            color: var(--accent-yellow);
             font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -301,12 +301,12 @@
             margin-bottom: 8px;
             padding: 4px 8px;
             background: var(--bg-tertiary);
-            border-left: 3px solid var(--accent-orange);
+            border-left: 3px solid var(--accent-yellow);
         }
         
         .feature-category::before {
             content: '>>> ';
-            color: var(--accent-cyan);
+            color: var(--accent-yellow);
         }
         
         .feature-category:first-child {
@@ -336,13 +336,14 @@
             padding: 6px 14px;
             border-radius: 0;
             font-size: 12px;
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
             transition: all 0.2s;
         }
         
         .format-tag:hover {
             border-color: var(--border-color);
             background: var(--bg-primary);
+            color: var(--accent-cyan);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         
@@ -355,7 +356,7 @@
         }
         
         .footer-links a {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
             text-decoration: none;
             font-size: 13px;
             transition: color 0.2s, background 0.2s;
@@ -365,7 +366,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--text-primary);
+            color: var(--accent-cyan);
             border-color: var(--border-color);
             background: var(--bg-tertiary);
         }
@@ -478,7 +479,7 @@
         }
         
         .lightbox-caption h3 {
-            color: var(--accent-green);
+            color: var(--accent-blue);
             font-size: 14px;
             margin-bottom: 4px;
         }
@@ -538,9 +539,9 @@
                         </div>
                     </div>
                     <div class="screenshot-item" onclick="openLightbox(1)">
-                        <img src="images/easy-workflow.png" alt="Easy Workflow">
+                        <img src="images/multi-window.png" alt="Multi-Window">
                         <div class="caption">
-                            <h3>easy-workflow</h3>
+                            <h3>multi-window</h3>
                             <p>Multi-track timeline with drag & drop</p>
                         </div>
                     </div>
@@ -1037,7 +1038,7 @@
     <script>
         const images = [
             { src: 'images/multitrack-timeline.png', title: 'multitrack-timeline', desc: 'Arrange audio & video clips on multiple tracks' },
-            { src: 'images/easy-workflow.png', title: 'easy-workflow', desc: 'Multi-track timeline with drag & drop' },
+            { src: 'images/multi-window.png', title: 'multi-window', desc: 'Multi-track timeline with drag & drop' },
             { src: 'images/speech-to-text.png', title: 'speech-to-text', desc: 'On-device AI transcription' },
             { src: 'images/video-editing-effects.png', title: 'video-editing', desc: 'Edit video with visual waveforms' },
             { src: 'images/edited-regions.png', title: 'edited-regions', desc: 'Visual edit tracking with undo' },
