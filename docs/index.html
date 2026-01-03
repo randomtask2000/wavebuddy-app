@@ -242,6 +242,10 @@
             padding-left: 28px;
         }
         
+        .screenshot-wide {
+            grid-column: 1 / -1;
+        }
+        
         .feature-list {
             margin-top: 12px;
         }
@@ -558,6 +562,14 @@
                             <h3>recording-inputs</h3>
                             <p>Mic, system audio, webcam & screen recording</p>
                         </div>
+                    </div>
+                </div>
+                <!-- Full-width screenshot -->
+                <div class="screenshot-item screenshot-wide" onclick="openLightbox(6)" style="margin-top: 16px;">
+                    <img src="images/clips-and-screen-recording.png" alt="Clips and Screen Recording">
+                    <div class="caption">
+                        <h3>clips-and-screen-recording</h3>
+                        <p>Multi-track timeline with audio clips, screen recording & video with thumbnail strips</p>
                     </div>
                 </div>
             </div>
@@ -929,7 +941,8 @@
             { src: 'images/speech-to-text.png', title: 'speech-to-text', desc: 'On-device AI transcription' },
             { src: 'images/video-editing-effects.png', title: 'video-editing', desc: 'Edit video with visual waveforms' },
             { src: 'images/edited-regions.png', title: 'edited-regions', desc: 'Visual edit tracking with undo' },
-            { src: 'images/recording-input-options.png', title: 'recording-inputs', desc: 'Mic, system audio, webcam & screen recording' }
+            { src: 'images/recording-input-options.png', title: 'recording-inputs', desc: 'Mic, system audio, webcam & screen recording' },
+            { src: 'images/clips-and-screen-recording.png', title: 'clips-and-screen-recording', desc: 'Multi-track timeline with audio clips, screen recording & video with thumbnail strips' }
         ];
 
         let currentIndex = 0;
