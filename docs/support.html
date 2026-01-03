@@ -19,14 +19,15 @@
             --bg-tertiary: #f5f5f5;
             --border-color: #000000;
             --text-primary: #000000;
-            --text-secondary: #333333;
-            --text-muted: #666666;
-            --accent-green: #000000;
-            --accent-blue: #000000;
-            --accent-purple: #000000;
-            --accent-orange: #000000;
-            --accent-red: #cc0000;
-            --accent-cyan: #000000;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --accent-green: #6a9955;
+            --accent-blue: #569cd6;
+            --accent-purple: #c586c0;
+            --accent-orange: #ce9178;
+            --accent-red: #f14c4c;
+            --accent-cyan: #4ec9b0;
+            --accent-yellow: #b5a642;
         }
         
         body {
@@ -73,7 +74,7 @@
         }
         
         .terminal-title {
-            color: var(--accent-green);
+            color: var(--accent-blue);
             font-size: 13px;
             margin-left: 8px;
             flex: 1;
@@ -122,14 +123,14 @@
         }
         
         .section-title {
-            color: var(--text-primary);
+            color: var(--accent-blue);
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 16px;
             padding: 8px 12px;
             background: linear-gradient(90deg, var(--bg-tertiary) 0%, transparent 100%);
-            border-left: 3px solid var(--border-color);
+            border-left: 3px solid var(--accent-blue);
         }
         
         .section-title::before {
@@ -139,7 +140,7 @@
         
         .back-link {
             display: inline-block;
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
             text-decoration: none;
             margin-bottom: 16px;
             padding: 8px 16px;
@@ -149,8 +150,8 @@
         }
         
         .back-link:hover {
-            border-color: var(--accent-cyan);
-            color: var(--accent-green);
+            border-color: var(--border-color);
+            color: var(--accent-cyan);
         }
         
         .back-link::before {
@@ -252,7 +253,7 @@
         }
         
         .footer-links a {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
             text-decoration: none;
             font-size: 13px;
             transition: color 0.2s, background 0.2s;
@@ -262,7 +263,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--text-primary);
+            color: var(--accent-cyan);
             border-color: var(--border-color);
             background: var(--bg-tertiary);
         }
